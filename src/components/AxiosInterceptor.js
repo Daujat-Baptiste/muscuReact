@@ -44,16 +44,16 @@ axios.interceptors.response.use(
 
         const originalRequest = error.config;
         // Prevent infinite loops
-        if (error.response.status === 401 && originalRequest.url === baseUrl +'/token/refresh') {
+        if (error?.response?.status === 401 && originalRequest.url === baseUrl +'/token/refresh') {
             console.log("antiboucle")
             window.location.href = '/connexion/';
             return Promise.reject(error);
         }
 
 
-        if (error.response.data.message === "Expired JWT Token" &&
-            error.response.status === 401 &&
-            error.response.statusText === "Unauthorized")
+        if (error?.response?.data?.message === "Expired JWT Token" &&
+            error?.response?.status === 401 &&
+            error?.response?.statusText === "Unauthorized")
         {
 
             const refreshToken = localStorage.getItem('refresh_token');
@@ -63,6 +63,7 @@ axios.interceptors.response.use(
                 return axios
                     .post('/token/refresh', {refresh: refreshToken})
                     .then((response) => {
+                        console.log(response.data)
 
                         localStorage.setItem('access_token', response.data.access);
                         localStorage.setItem('refresh_token', response.data.refresh);
@@ -82,7 +83,7 @@ axios.interceptors.response.use(
         }
         else
         {
-            console.log(error.response.data)
+            //console.log(error.response.data)
         }
         // specific error handling done elsewhere
         return Promise.reject(error);

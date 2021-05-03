@@ -15,7 +15,6 @@ const Atelier = (props) => { // pour l'instant on n'a pas besoin de propriétés
         const fetchData = async () => {
             await axios.get(`api/ateliers/${id}`) //Attention, cet apostrophe est celle de "alt gr" + 7. Elle permet à ${id} d'incruster sa valeur !
                 .then((response) => {
-                    console.log(response)
                     setAtelier(response.data)
                 }, (error) => {
                     console.log(error)
@@ -34,7 +33,6 @@ const Atelier = (props) => { // pour l'instant on n'a pas besoin de propriétés
         )
 
             .then((response) => {
-                console.log(response.data)
                 atelier.commentaires.push(response.data)
                 setAtelier(atelier)
                 setTitre("")

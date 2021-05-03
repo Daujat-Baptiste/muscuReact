@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react"
-import {useParams} from 'react-router-dom'
 import Table from "react-bootstrap/Table";
 import axios from "./AxiosInterceptor";
 

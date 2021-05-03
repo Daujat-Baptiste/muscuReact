@@ -7,34 +7,23 @@ const Commentaire = ({commentaire, login, handleSupprimerCommentaire}) => { //au
 
     const [commentaires, setCommentaires] = useState([])
     const [proprietaires, setProprietaires] = useState([])
-    useEffect(() => {
-        const getCommentaire = async()=>{
-            const commentaireFetched = await axios.get(commentaire)
-            setCommentaires(commentaireFetched.data)
-            const proprietaireFetched = await axios.get("http://127.0.0.1:8000"+commentaireFetched.data.proprietaire)
-            setProprietaires(proprietaireFetched.data)
-        }
-        getCommentaire()
-    }, [])
-    console.log(commentaires)
+    console.log(commentaire.proprietaire)
     return (
         <Card>
             <Card.Header>De <i>
-                {proprietaires === null ?
+                {!commentaire.proprietaire ?
                     (<> anonyme </>)
-                    : (<> {proprietaires.nomUtilisateur} {proprietaires.prenomUtilisateur} </>)}
-            </i> le {Moment(commentaires.date).format('DD/MM/YYYY à HH:mm')}
+                    : (<> {commentaire.proprietaire.nomUtilisateur} {commentaire.proprietaire.prenomUtilisateur} </>)}
+            </i> le {Moment(commentaire.date).format('DD/MM/YYYY à HH:mm')}
 
-                {commentaires.proprietaire === null ?
+                {!commentaire.proprietaire ?
                     (<>  </>)
-                    : (<> {commentaires.proprietaire === login ?
+                    : (<> {commentaire.proprietaire.login === login ?
                         (
                             <>
                                 <button
                                     className="input-submit">
-                                    onClick={e => {
-                                    handleSupprimerCommentaire(commentaire.id)
-                                }}
+                                    Supprimer
                                 </button>
                             </>
                         ) : (<></>)
@@ -42,9 +31,9 @@ const Commentaire = ({commentaire, login, handleSupprimerCommentaire}) => { //au
                     </>)}
             </Card.Header>
             <Card.Body>
-                <Card.Title> {commentaires.titre} </Card.Title>
+                <Card.Title> {commentaire.titre} </Card.Title>
                 <Card.Text>
-                    {commentaires.message}
+                    {commentaire.message}
                 </Card.Text>
             </Card.Body>
         </Card>
