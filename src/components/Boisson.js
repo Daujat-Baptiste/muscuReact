@@ -25,15 +25,14 @@ const Boisson = (props) => { // pour l'instant on n'a pas besoin de propriétés
 
     const handleAjoutCommentaire = e => {
         e.preventDefault();
-        axios.post('api/commentaire/boisson/'+id,
+        axios.post(`/commentaire/boisson/api/${id}`,
             {
                 titre: titre,
                 message: message
             }
         )
-
             .then((response) => {
-                boisson.commentaires.push(response.data)
+                boisson.commentaireBoissons.push(response.data)
                 setBoisson(boisson)
                 setTitre("")
                 setMessage("")
@@ -41,15 +40,16 @@ const Boisson = (props) => { // pour l'instant on n'a pas besoin de propriétés
                 console.log(error)
             })
     }
+
     const handleSupprimerCommentaire = idCommentaire => {
-        axios.delete('api/commentaire_ateliers/'+idCommentaire)
+        axios.delete(`api/commentaire_boissons/${idCommentaire}`)
             .then((response)=> {
                 setBoisson(
                     {
                         ...boisson,
-                        commentaires: boisson.commentaires.filter(
-                            commentaire => {
-                                return commentaire.id !== idCommentaire;
+                        commentaireBoissons: boisson.commentaireBoissons.filter(
+                            commentaireBoissons => {
+                                return commentaireBoissons.id !== idCommentaire;
                             }
                         )
                     }
@@ -105,7 +105,7 @@ const Boisson = (props) => { // pour l'instant on n'a pas besoin de propriétés
                     </Card>
                 </form>
                 <h3>Commentaires</h3>
-                {boisson.commentaires === undefined ?
+                {boisson.commentaireBoissons === undefined ?
                     (
                         <>
                             Pas encore de commentaire
@@ -113,9 +113,9 @@ const Boisson = (props) => { // pour l'instant on n'a pas besoin de propriétés
                     ) :
                     (
                         <>
-                            {boisson.commentaires.map(commentaire => (
-                                <Commentaire key={commentaire.id} commentaire={commentaire} login={props.login}
-                                             handleSupprimerCommentaire={handleSupprimerCommentaire}/>
+                            {boisson.commentaireBoissons.map(commentaireBoissons => (
+                                <Commentaire key={commentaireBoissons.id} commentaire={commentaireBoissons} login={props.login}
+                                             handleSupprimerCommentaire={()=>handleSupprimerCommentaire(commentaireBoissons.id)}/>
                             ))}
                         </>
                     )

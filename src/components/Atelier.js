@@ -25,13 +25,12 @@ const Atelier = (props) => { // pour l'instant on n'a pas besoin de propriétés
 
     const handleAjoutCommentaire = e => {
         e.preventDefault();
-        axios.post('api/commentaire/atelier/'+id,
+        axios.post('commentaire/atelier/api/'+id,
             {
                 titre: titre,
                 message: message
             }
         )
-
             .then((response) => {
                 atelier.commentaires.push(response.data)
                 setAtelier(atelier)
