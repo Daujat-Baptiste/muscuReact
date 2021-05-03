@@ -21,7 +21,7 @@ const RouteMission2 = props =>{
                     <Atelier login={props.login}/>
                 </Route>
                 <Route path="/boisson/:id">
-                    <Boisson/>
+                    <Boisson login={props.login}/>
                 </Route>
                 <Route path="/about">
                     <About/>

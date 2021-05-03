@@ -25,7 +25,7 @@ const Atelier = (props) => { // pour l'instant on n'a pas besoin de propriétés
 
     const handleAjoutCommentaire = e => {
         e.preventDefault();
-        axios.post('atelier/api/commentaire/atelier/'+id,
+        axios.post('api/commentaire/atelier/'+id,
             {
                 titre: titre,
                 message: message
@@ -56,7 +56,7 @@ const Atelier = (props) => { // pour l'instant on n'a pas besoin de propriétés
                 )
             },(error)=> {
                 console.log(error)
-            })
+            });
     }
 
     if (atelier) {
@@ -122,8 +122,8 @@ const Atelier = (props) => { // pour l'instant on n'a pas besoin de propriétés
                     (
                         <>
                             {atelier.commentaires.map(commentaire => (
-                                <Commentaire key={commentaire.id}
-                                commentaire={commentaire} login={props.login} handleSupprimerCommentaire={handleSupprimerCommentaire}/>
+                                <Commentaire key={commentaire.id} commentaire={commentaire} login={props.login}
+                                             handleSupprimerCommentaire={handleSupprimerCommentaire}/>
                             ))}
                         </>
                     )

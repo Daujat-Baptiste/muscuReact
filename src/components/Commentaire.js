@@ -7,7 +7,6 @@ const Commentaire = ({commentaire, login, handleSupprimerCommentaire}) => { //au
 
     const [commentaires, setCommentaires] = useState([])
     const [proprietaires, setProprietaires] = useState([])
-    console.log(commentaire.proprietaire)
     return (
         <Card>
             <Card.Header>De <i>
@@ -22,9 +21,10 @@ const Commentaire = ({commentaire, login, handleSupprimerCommentaire}) => { //au
                         (
                             <>
                                 <button
-                                    className="input-submit">
-                                    Supprimer
-                                </button>
+                                    className="input-submit"
+                                    onClick={e => {
+                                        handleSupprimerCommentaire(commentaire.id)
+                                    }}>Supprimer</button>
                             </>
                         ) : (<></>)
                     }
