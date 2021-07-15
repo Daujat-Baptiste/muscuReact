@@ -1,3 +1,9 @@
+Découverte de React pour un projet de deuxième année de BTS SIO.
+Un autre repository est disponible avec le back-end en symfony, ou j'ai mis en place une API REST
+Technologie: React
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
