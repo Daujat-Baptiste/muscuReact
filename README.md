@@ -1,8 +1,6 @@
-Découverte de React pour un projet de deuxième année de BTS SIO.
-Un autre repository est disponible avec le back-end en symfony, ou j'ai mis en place une API REST
-Technologie: React
-
-
+Découverte de React pour un projet de deuxième année de BTS SIO. Un autre repository est disponible avec le back-end en Symfony, ou j'ai mis en place une API REST 
+Front-end: React
+Back-end: Symfony (API REST)
 
 # Getting Started with Create React App
 
